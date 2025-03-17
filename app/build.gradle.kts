@@ -41,6 +41,7 @@ android {
         jvmTarget = "1.8"
     }
     buildFeatures {
+        aidl = true  //aidl-1
         compose = true
     }
     packaging {

@@ -7,7 +7,7 @@ import android.os.IBinder
 import android.util.Log
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-
+//offer this service to activities of other apps
 class MusicService : Service() {
 
     private val binderpipe = LocalBinder()
@@ -46,14 +46,25 @@ class MusicService : Service() {
 
     override fun onBind(intent: Intent): IBinder {
         Log.i(TAG,"im in onbind--returning binder")
-        return binderpipe//2
+        return aidlBinder//2 //aidl - 3
     }
 
     companion object{
         var TAG = MusicService::class.simpleName
     }
 
+    private val  aidlBinder = object : IMyAidlInterface.Stub() {  //aidl-3
+        override fun add(fno: Int, sno: Int): Int {
+            return fno + sno
+        }
+
+    }
+
+
     inner class LocalBinder : Binder() {
+
+
+
         // Return this instance of LocalService so clients can call public methods.
         fun getService(): MusicService = this@MusicService
     }

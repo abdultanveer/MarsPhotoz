@@ -15,7 +15,12 @@
         <service
             android:name=".MusicService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="ineed.addition.bosch"/>
+            </intent-filter>
+        </service>
 
         <activity
             android:name=".ServeActivity"
